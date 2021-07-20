@@ -1,0 +1,13 @@
+version: "3"
+services:
+  db:
+    image: mysql
+    cap_add:
+        - SYS_NICE
+    ports:
+      - "3312:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: article
+      MYSQL_USER: cps
+      MYSQL_PASSWORD: cps

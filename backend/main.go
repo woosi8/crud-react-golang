@@ -43,20 +43,20 @@ import (
 	// log.Print(c.Param("id"))
 
 	err := c.BindJSON(&article)
-	if err != nil {
-		log.Println("바인딩이 잘 안됨")
-  	c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-    "status": err,
-   	})
+		if err != nil {
+			log.Println("바인딩이 잘 안됨")
+			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+		"status": err,
+   		})
 	}
 
 	// err2 := db.Where("id = ?", id).First(&article).Create(&article).Error
 	err2 := db.Create(&article).Error
-	if err2 != nil {
-		log.Print(err2)
-		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
-    		"status": err2,
-    	})
+		if err2 != nil {
+			log.Print(err2)
+			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
+				"status": err2,
+			})
 	}
 		log.Println("Create 완료")
 
@@ -74,7 +74,7 @@ import (
 
   ///////////////////////////////////////////READ///////////////////////////////////////////////////
 
-  r.PUT("/update/:id/:name/:content", func(c *gin.Context) {
+  r.PUT("/update/:id/", func(c *gin.Context) {
 
 	var article Modeling.Article
     name := c.Param("name")
@@ -102,8 +102,9 @@ import (
 
 
 	  db.Find(&article)
+
+	  // 리턴이 안되고 gin 규칙을 따라 아래처럼 보내줘야 한다
 	  c.JSON(http.StatusOK, gin.H{"status": "ok", "article" : &article})
-	// 리턴이 안되고 gin 규칙을 따라 위에처럼 보내줘야 한다
  	//   return &article 
 	   
 	//    err := c.BindJSON(&article)

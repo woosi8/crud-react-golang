@@ -75,6 +75,8 @@ import (
   ///////////////////////////////////////////READ///////////////////////////////////////////////////
 
   r.PUT("/update/:id/", func(c *gin.Context) {
+//r.PUT("/update/:id/:name/:content", func(c *gin.Context) {
+
 
 	var article Modeling.Article
     name := c.Param("name")
